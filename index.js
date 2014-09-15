@@ -16,7 +16,7 @@ module.exports = function(options) {
     var output;
     try {
       if (options.js) {
-        output = hamlc.template(file.contents.toString("utf8"), options.name, options.namespace, options);
+        output = hamlc.template(file.contents.toString("utf8"), file.path.replace(options.project, '').replace(/^\//g, '').replace('.hamlc', ''), options.namespace, options);
         file.path = rext(file.path, ".js");
       } else {
         output = hamlc.render(file.contents.toString("utf8"), options.locals || {}, options);
